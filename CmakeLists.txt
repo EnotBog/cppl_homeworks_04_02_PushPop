@@ -1,0 +1,5 @@
+ cmake_minimum_required(VERSION 3.20)
+ project(MyProject)
+ find_package(Catch2 3 REQUIRED)
+ add_executable(mytest MyListTest1.cpp List.h ListNode.h List.cpp ListNode.cpp)
+ target_link_libraries(mytest PRIVATE Catch2::Catch2)
