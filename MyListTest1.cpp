@@ -1,5 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_session.hpp>
+#include <catch2/matchers/catch_matchers.hpp>
 #include "List.h"
 #include "ListNode.h"
 
@@ -36,8 +37,15 @@ TEST_CASE("Test list", "[list]")
 
 	SECTION("List PopBack and PopFront empty list ")
 	{
-		CHECK(myList.PopBack() == 1);
-		CHECK(myList.PopFront() == 1);
+		myList.PushFront(1);
+		myList.PushBack(2);
+		myList.PopBack();
+		myList.PopFront();
+		
+		CHECK_THROWS_WITH(myList.PopBack(), "list is empty");
+		CHECK_THROWS_WITH(myList.PopFront(), "list is empty");
+	//	CHECK(myList.PopBack() == 1);
+	//	CHECK(myList.PopFront() == 1);
 		
 	}
 
@@ -45,6 +53,7 @@ TEST_CASE("Test list", "[list]")
 	{
 		myList.PushFront(1);
 		myList.PushBack(2);
+		
 		CHECK(myList.PopBack() == 2);
 		CHECK(myList.PopFront() == 1);
 	}
